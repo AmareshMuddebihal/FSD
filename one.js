@@ -45,3 +45,5 @@ function power() {
 	let display = document.getElementById("display");
 	display.value += "^(";
 }
+
+
