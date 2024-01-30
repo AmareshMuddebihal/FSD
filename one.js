@@ -1,49 +1,62 @@
-function backspace() {
-	let display = document.getElementById("display");
-	display.value = display.value.slice(0, -1);
-}
+let isError = false;
 
-function calculate() {
-	let display = document.getElementById("display");
-	let expression = display.value;
-	let result;
+        function backspace() {
+            let display = document.getElementById("display");
+            display.value = display.value.slice(0, -1);
+            isError = false;
+        }
 
-	try {
-		// Convert trigonometric function inputs from degrees to radians
-		expression = expression.replace(/sin\(/g, 'sin(' + Math.PI / 180 + '*');
-		expression = expression.replace(/cos\(/g, 'cos(' + Math.PI / 180 + '*');
-		expression = expression.replace(/tan\(/g, 'tan(' + Math.PI / 180 + '*');
+        function calculate() {
+            let display = document.getElementById("display");
+            let expression = display.value;
+            let result;
 
-		result = math.evaluate(expression);
-		display.value = result;
-	} catch (error) {
-		display.value = "Error";
-	}
-}
+            try {
+                // Convert trigonometric function inputs from degrees to radians
+                expression = expression.replace(/sin\(/g, 'sin(' + Math.PI / 180 + '*');
+                expression = expression.replace(/cos\(/g, 'cos(' + Math.PI / 180 + '*');
+                expression = expression.replace(/tan\(/g, 'tan(' + Math.PI / 180 + '*');
 
-function squareRoot() {
-	let display = document.getElementById("display");
-	display.value += "sqrt(";
-}
+                result = math.evaluate(expression);
+                display.value = result;
+                isError = false;
+            } catch (error) {
+                display.value = "Error";
+                isError = true;
+            }
+        }
 
-function base10Log() {
-	let display = document.getElementById("display");
-	display.value += "log(";
-}
+        function squareRoot() {
+            let display = document.getElementById("display");
+            if (!isError) {
+                display.value += "sqrt(";
+            }
+        }
 
-function pi() {
-	let display = document.getElementById("display");
-	display.value += "pi";
-}
+        function base10Log() {
+            let display = document.getElementById("display");
+            if (!isError) {
+                display.value += "log(";
+            }
+        }
 
-function e() {
-	let display = document.getElementById("display");
-	display.value += "e";
-}
+        function pi() {
+            let display = document.getElementById("display");
+            if (!isError) {
+                display.value += "pi";
+            }
+        }
 
-function power() {
-	let display = document.getElementById("display");
-	display.value += "^(";
-}
+        function e() {
+            let display = document.getElementById("display");
+            if (!isError) {
+                display.value += "e";
+            }
+        }
 
-
+        function power() {
+            let display = document.getElementById("display");
+            if (!isError) {
+                display.value += "^(";
+            }
+        }
